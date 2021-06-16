@@ -21,15 +21,15 @@ import java.net.UnknownHostException;
 
 public class MainActivity extends AppCompatActivity {
 
-    /* FIXME: implementar
-    public boolean isConecctedToInternet() throws InterruptedException, IOException {
 
-        Process p1 = java.lang.Runtime.getRuntime().exec("sh ping -c 1 www.google.com");
+    public boolean haceHttpGetALibreMesh() throws InterruptedException, IOException {
+        //FIXME: modificar google por la IP de LibreMesh
+        String[] cmdLine = {"sh", "-c", "curl --head --silent --fail google.com"};
+        Process p1 = java.lang.Runtime.getRuntime().exec(cmdLine);
         int returnVal = p1.waitFor();
         return returnVal == 0;
 
     }
-     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,29 +37,30 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void verificaConexion(View view) {
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-        InetAddress addr;
+    public boolean verificaConexionALibreMesh() {
         try {
-            addr = InetAddress.getByName("www.google.com");
-            try {
-                String text = addr.isReachable(5000) ? "Está en una red de LibreMesh" : "No está en una red de LibreMesh";
-                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
-            }
-            catch(IOException e) {
-                Toast.makeText(getApplicationContext(),"Error al intentar llegar al host",Toast.LENGTH_LONG).show();
-            }
-        } catch (UnknownHostException e) {
-            Toast.makeText(getApplicationContext(),"Error al encontrar el host",Toast.LENGTH_LONG).show();
+            return haceHttpGetALibreMesh();
+        } catch (InterruptedException e) {
+            System.out.println("Error de interrupcion al intentar acceder a la IP de LibreMesh.");
+        } catch (IOException e) {
+            System.out.println("Error de entrada o salida al intentar acceder a la IP de LibreMesh.");
         }
+        return false;
+
     }
 
-    public void enviaPing(View view) {
+    public String getIpPrivada() {
         WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         int ip = wm.getConnectionInfo().getIpAddress();
         String ipString = String.format("%d.%d.%d.%d", (ip & 0xff), (ip >> 8 & 0xff), (ip >> 16 & 0xff), (ip >> 24 & 0xff));
-        Toast.makeText(getApplicationContext(),ipString,Toast.LENGTH_LONG).show();
+        return ipString;
+    }
+
+    public void informaConexionALibreMesh(View view) {
+        Toast.makeText(getApplicationContext(), verificaConexionALibreMesh() ? "Está en una red LibreMesh" : "No está en una red LibreMesh",Toast.LENGTH_LONG).show();
+    }
+
+    public void informaIpPrivada(View view) {
+        Toast.makeText(getApplicationContext(), getIpPrivada(),Toast.LENGTH_LONG).show();
     }
 }
