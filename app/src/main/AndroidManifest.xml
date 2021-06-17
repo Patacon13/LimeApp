@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.limeapp">
-    <uses-permission android:name="android.permission.INTERNET" >
-    </uses-permission>
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
-    </uses-permission>
-
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,6 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LimeApp">
+        <activity
+            android:name="app.LibreMesh"
+            android:label="@string/title_activity_libre_mesh"
+            android:theme="@style/Theme.LimeApp.NoActionBar"></activity>
         <activity android:name="app.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

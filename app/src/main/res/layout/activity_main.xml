@@ -7,29 +7,43 @@
     tools:context="app.MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/verificaRedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="27dp"
         android:layout_marginTop="317dp"
         android:layout_marginBottom="366dp"
         android:onClick="informaConexionALibreMesh"
-        android:text="Verificar red"
+        android:text="@string/verificar_red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/obtieneIpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="317dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="366dp"
         android:onClick="informaIpPrivada"
-        android:text="Obtener IP"
+        android:text="@string/obtener_ip"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/accederButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="431dp"
+        android:layout_marginBottom="252dp"
+        android:onClick="accedeALibreMesh"
+        android:text="@string/accederButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/obtieneIpButton"
+        app:layout_constraintStart_toEndOf="@+id/verificaRedButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

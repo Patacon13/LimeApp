@@ -2,22 +2,17 @@ package app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.text.format.Formatter;
-import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.limeapp.R;
 
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
-import java.net.UnknownHostException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         Process p1 = java.lang.Runtime.getRuntime().exec(cmdLine);
         int returnVal = p1.waitFor();
         return returnVal == 0;
-
     }
 
     @Override
@@ -73,5 +67,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void informaIpPrivada(View view) {
         Toast.makeText(getApplicationContext(), getIpPrivada(),Toast.LENGTH_LONG).show();
+    }
+
+
+    public void accedeALibreMesh(View view) {
+        Intent myIntent = new Intent(this, LibreMesh.class);
+        if(verificaConexionPorWiFi())
+            if(verificaConexionALibreMesh())
+                startActivity(myIntent);
+            else
+                Toast.makeText(getApplicationContext(), "No está en una red LibreMesh",Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(getApplicationContext(), "No está conectado a la WiFi. Conéctese y vuelva a intentarlo" ,Toast.LENGTH_LONG).show();
     }
 }
