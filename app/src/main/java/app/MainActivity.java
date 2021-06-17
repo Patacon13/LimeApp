@@ -56,8 +56,19 @@ public class MainActivity extends AppCompatActivity {
         return ipString;
     }
 
+    public boolean verificaConexionPorWiFi() {
+        WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        if(wm.isWifiEnabled()) {
+            return (wm.getConnectionInfo().getNetworkId() == -1) ? false : true;
+        }
+        return false;
+    }
+
     public void informaConexionALibreMesh(View view) {
-        Toast.makeText(getApplicationContext(), verificaConexionALibreMesh() ? "Está en una red LibreMesh" : "No está en una red LibreMesh",Toast.LENGTH_LONG).show();
+        if(verificaConexionPorWiFi())
+            Toast.makeText(getApplicationContext(), verificaConexionALibreMesh() ? "Está en una red LibreMesh" : "No está en una red LibreMesh",Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(getApplicationContext(), "No está conectado a la WiFi. Conéctese y vuelva a intentarlo" ,Toast.LENGTH_LONG).show();
     }
 
     public void informaIpPrivada(View view) {
