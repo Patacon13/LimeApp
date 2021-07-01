@@ -1,14 +1,13 @@
 package app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.limeapp.R;
 
@@ -46,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
     public String getIpPrivada() {
         WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         int ip = wm.getConnectionInfo().getIpAddress();
-        String ipString = String.format("%d.%d.%d.%d", (ip & 0xff), (ip >> 8 & 0xff), (ip >> 16 & 0xff), (ip >> 24 & 0xff));
+        @SuppressLint("DefaultLocale") String ipString = String.format("%d.%d.%d.%d", (ip & 0xff), (ip >> 8 & 0xff), (ip >> 16 & 0xff), (ip >> 24 & 0xff));
         return ipString;
     }
 
     public boolean verificaConexionPorWiFi() {
         WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         if(wm.isWifiEnabled()) {
-            return (wm.getConnectionInfo().getNetworkId() == -1) ? false : true;
+            return wm.getConnectionInfo().getNetworkId() != -1;
         }
         return false;
     }
@@ -71,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void accedeALibreMesh(View view) {
+
         Intent myIntent = new Intent(this, LibreMesh.class);
         if(verificaConexionPorWiFi())
             if(verificaConexionALibreMesh())

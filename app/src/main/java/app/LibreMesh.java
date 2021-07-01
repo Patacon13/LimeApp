@@ -5,50 +5,22 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
+import android.os.Build;
 import android.os.Bundle;
-
-import com.example.limeapp.R;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.limeapp.R;
 import com.example.limeapp.databinding.ActivityLibreMeshBinding;
-
-import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
 
 public class LibreMesh extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityLibreMeshBinding binding;
+    private ConnectivityManager connectivityManager;
 
-    private void forzarWifi() {
-        NetworkRequest.Builder requestbuilder = new NetworkRequest.Builder();
-        requestbuilder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI);
 
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        cm.requestNetwork(requestbuilder.build(), new ConnectivityManager.NetworkCallback() {
-            @Override
-            public void onAvailable(Network network) {
-                try {
-                    URLConnection url = network.openConnection(new URL("192.168.0.1"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +28,16 @@ public class LibreMesh extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        binding = ActivityLibreMeshBinding.inflate(getLayoutInflater());
+        com.example.limeapp.databinding.ActivityLibreMeshBinding binding = ActivityLibreMeshBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        iniciarNavegador();
+    }
+
+    private void iniciarNavegador() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) requestWifi();
 
         WebView navegador;
         navegador = (WebView) findViewById(R.id.navegadorLibreMesh);
@@ -70,8 +50,68 @@ public class LibreMesh extends AppCompatActivity {
             }
         });
 
-        forzarWifi();
-
-        navegador.loadUrl("192.168.0.1");
+        navegador.loadUrl("192.168.0.2");
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void requestWifi() {
+        final NetworkRequest networkRequest = new NetworkRequest.Builder()
+                .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                .build();
+
+        connectivityManager.requestNetwork(networkRequest, new ConnectivityManager.NetworkCallback() {
+            @Override
+            public void onAvailable(Network network) {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                    connectivityManager.bindProcessToNetwork(network);
+                else
+                    ConnectivityManager.setProcessDefaultNetwork(network);
+            }
+
+            @Override
+            public void onLost(Network network) {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                    connectivityManager.bindProcessToNetwork(null);
+                else
+                    ConnectivityManager.setProcessDefaultNetwork(null);
+            }
+
+            @Override
+            public void onUnavailable() {
+                super.onUnavailable();
+            }
+        });
+    }
+
+    private void requestMobile() {
+        //TODO: testear
+        final NetworkRequest networkRequest = new NetworkRequest.Builder()
+                .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+                .build();
+
+        connectivityManager.requestNetwork(networkRequest, new ConnectivityManager.NetworkCallback() {
+            @Override
+            public void onAvailable(Network network) {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                    connectivityManager.bindProcessToNetwork(network);
+                else
+                    ConnectivityManager.setProcessDefaultNetwork(network);
+            }
+
+            @Override
+            public void onLost(Network network) {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                    connectivityManager.bindProcessToNetwork(null);
+                else
+                    ConnectivityManager.setProcessDefaultNetwork(null);
+            }
+
+            @Override
+            public void onUnavailable() {
+                super.onUnavailable();
+            }
+        });
+    }
+
 }
+
