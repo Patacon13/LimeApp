@@ -1,6 +1,5 @@
 package app;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -15,8 +14,9 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
+    WifiManager wifiManager;
 
-    public boolean haceHttpGetALibreMesh() throws InterruptedException, IOException {
+    public boolean httpGetToLibreMesh() throws InterruptedException, IOException {
         //FIXME: modificar google por la IP de LibreMesh
         String[] cmdLine = {"sh", "-c", "curl --head --silent --fail google.com"};
         Process p1 = java.lang.Runtime.getRuntime().exec(cmdLine);
@@ -28,11 +28,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
     }
 
-    public boolean verificaConexionALibreMesh() {
+    public boolean verifyLibreMeshConnection() {
         try {
-            return haceHttpGetALibreMesh();
+            return httpGetToLibreMesh();
         } catch (InterruptedException e) {
             System.out.println("Error de interrupcion al intentar acceder a la IP de LibreMesh.");
         } catch (IOException e) {
@@ -42,38 +43,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public String getIpPrivada() {
-        WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-        int ip = wm.getConnectionInfo().getIpAddress();
-        @SuppressLint("DefaultLocale") String ipString = String.format("%d.%d.%d.%d", (ip & 0xff), (ip >> 8 & 0xff), (ip >> 16 & 0xff), (ip >> 24 & 0xff));
-        return ipString;
-    }
-
-    public boolean verificaConexionPorWiFi() {
-        WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-        if(wm.isWifiEnabled()) {
-            return wm.getConnectionInfo().getNetworkId() != -1;
-        }
-        return false;
-    }
-
-    public void informaConexionALibreMesh(View view) {
-        if(verificaConexionPorWiFi())
-            Toast.makeText(getApplicationContext(), verificaConexionALibreMesh() ? "Está en una red LibreMesh" : "No está en una red LibreMesh",Toast.LENGTH_LONG).show();
+    public void informConnectionToLibreMesh(View view) {
+        if(WifiInformationManager.verifyWifiConnection(wifiManager))
+            Toast.makeText(getApplicationContext(), verifyLibreMeshConnection() ? "Está en una red LibreMesh" : "No está en una red LibreMesh",Toast.LENGTH_LONG).show();
         else
             Toast.makeText(getApplicationContext(), "No está conectado a la WiFi. Conéctese y vuelva a intentarlo" ,Toast.LENGTH_LONG).show();
     }
 
-    public void informaIpPrivada(View view) {
-        Toast.makeText(getApplicationContext(), getIpPrivada(),Toast.LENGTH_LONG).show();
+    public void informPrivateIp(View view) {
+        Toast.makeText(getApplicationContext(), WifiInformationManager.getPrivateIp(wifiManager),Toast.LENGTH_LONG).show();
     }
 
 
-    public void accedeALibreMesh(View view) {
-
+    public void accessToLibreMesh(View view) {
         Intent myIntent = new Intent(this, LibreMesh.class);
-        if(verificaConexionPorWiFi())
-            if(verificaConexionALibreMesh())
+        startActivity(myIntent);
+        if(WifiInformationManager.verifyWifiConnection(wifiManager))
+            if(verifyLibreMeshConnection())
                 startActivity(myIntent);
             else
                 Toast.makeText(getApplicationContext(), "No está en una red LibreMesh",Toast.LENGTH_LONG).show();

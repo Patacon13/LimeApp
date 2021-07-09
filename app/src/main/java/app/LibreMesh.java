@@ -5,8 +5,11 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -19,7 +22,7 @@ import com.example.limeapp.databinding.ActivityLibreMeshBinding;
 public class LibreMesh extends AppCompatActivity {
 
     private ConnectivityManager connectivityManager;
-
+    private WifiManager wifiManager;
 
 
     @Override
@@ -28,20 +31,21 @@ public class LibreMesh extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+
         com.example.limeapp.databinding.ActivityLibreMeshBinding binding = ActivityLibreMeshBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        iniciarNavegador();
+        runNavigator();
     }
 
-    private void iniciarNavegador() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) requestWifi();
-
-        WebView navegador;
-        navegador = (WebView) findViewById(R.id.navegadorLibreMesh);
-        navegador.setWebViewClient(new WebViewClient() {
+    private void configureNavigator(WebView webView) {
+        WebSettings settings = webView.getSettings();
+        settings.setDomStorageEnabled(true);
+        settings.setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient() {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -49,8 +53,18 @@ public class LibreMesh extends AppCompatActivity {
                 return true;
             }
         });
+    }
 
-        navegador.loadUrl("192.168.0.2");
+    private void runNavigator() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) requestWifi();
+
+        WebView navegador;
+        navegador = (WebView) findViewById(R.id.navegadorLibreMesh);
+        configureNavigator(navegador);
+
+        System.out.println(WifiInformationManager.getGateway(wifiManager));
+        navegador.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        navegador.loadUrl(WifiInformationManager.getGateway(wifiManager));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
