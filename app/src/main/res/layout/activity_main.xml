@@ -6,31 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="app.MainActivity">
+
     <Button
         android:id="@+id/verificaRedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="317dp"
         android:layout_marginBottom="366dp"
         android:onClick="informaConexionALibreMesh"
         android:text="@string/verificar_red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492" />
 
     <Button
         android:id="@+id/obtieneIpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="317dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="366dp"
         android:onClick="informaIpPrivada"
         android:text="@string/obtener_ip"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.487" />
 
     <Button
         android:id="@+id/accederButton"
@@ -42,8 +45,10 @@
         android:text="@string/accederButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/obtieneIpButton"
+        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toEndOf="@+id/verificaRedButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.484" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
