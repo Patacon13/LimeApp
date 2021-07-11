@@ -18,10 +18,11 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean httpGetToLibreMesh() throws InterruptedException, IOException {
         //FIXME: modificar google por la IP de LibreMesh
-        String[] cmdLine = {"sh", "-c", "curl --head --silent --fail google.com"};
+        String[] cmdLine = {"sh", "-c", "curl --head --silent --fail thisnode.info/app"};
+        System.out.println(cmdLine[0] + cmdLine[1] + cmdLine[2]);
         Process p1 = java.lang.Runtime.getRuntime().exec(cmdLine);
         int returnVal = p1.waitFor();
-        return returnVal == 0;
+        return (returnVal == 0);
     }
 
     @Override
