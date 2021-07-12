@@ -34,6 +34,8 @@ public class LibreMesh extends AppCompatActivity {
 
         connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) NetworkAccessManager.requestWifi(connectivityManager);
+
         runNavigator();
     }
 
@@ -53,7 +55,6 @@ public class LibreMesh extends AppCompatActivity {
     }
 
     private void runNavigator() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) NetworkAccessManager.requestWifi(connectivityManager);
 
         WebView navegador;
         navegador = (WebView) findViewById(R.id.navegadorLibreMesh);
