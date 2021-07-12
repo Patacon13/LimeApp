@@ -39,7 +39,11 @@ git clone https://github.com/Patacon13/LibreMesh-app
 ```
 Android Studio -> Open an existing project -> [Folder of cloned project]
 ```
+## To-Do
 
+* A better graphical interface with the integrations of all the planned functions of the app.
+* Support other services in addition to Lime-App.
+* Add the app to the LibreMesh operating system, giving the posibility to the user to obtain the app directly from the router.
 
 # Doc
 
