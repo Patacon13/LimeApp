@@ -12,7 +12,7 @@ In the general case, the user doesn't know that there's a possibility to use the
 
 ### Status of the app
 
-As we're starting the second part of the GSoC, the app isn't finished yet, there's only a preview version that has the principal functions, without a good graphical interface. But can show 
+As we're starting the second part of the GSoC, the app isn't finished yet, there's only a preview version that has the principal functions, without a good graphical interface but can execute all the features expected for the first release.
 
 ## How to compile it
 
