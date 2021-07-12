@@ -7,9 +7,8 @@ The application is created for Freifunk - Altermundi as a part of the Google Sum
 
 ### Why a network capability app
 
-Android only send data to internet through one way, mobile data or WiFi. To help the user connecting to Internet, Android detects if the WiFi provide an internet connection, and automatically change between Data or WiFi unless the user explicitly asks for a WiFi connection.
-
-On the general case, the user doesn't know that there's a possibility to use the WiFi without Internet, or doesn't want to because it implies losing the Internet Access. With this application, the user can configure the node *without* disconnecting Mobile Data.
+Android only sends data to internet through one way, mobile data or WiFi. To help the user connecting to Internet, Android detects if the WiFi provides an internet connection, and automatically changes between Data or WiFi unless the user explicitly asks for a WiFi connection.
+In the general case, the user doesn't know that there's a possibility to use the WiFi without Internet or doesn't want to because it implies losing Internet Access. With this application, the user can configure the node without disconnecting Mobile Data.
 
 ### Status of the app
 
