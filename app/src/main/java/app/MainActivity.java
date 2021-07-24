@@ -22,34 +22,44 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.UnknownHostException;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
     WifiManager wifiManager;
     ConnectivityManager connectivityManager;
     public boolean httpGetToLibreMesh() throws InterruptedException {
+        boolean[] conexionExitosa = {false};
 
-        StrictMode.ThreadPolicy policy = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.GINGERBREAD) {
-            policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        }
-        StrictMode.setThreadPolicy(policy);
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                String url = "http://thisnode.info/cgi-bin/hostname";
 
-        String url = "http://thisnode.info/cgi-bin/hostname";
+                URLConnection connection = null;
+                try {
+                    connection = new URL(url).openConnection();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return;
+                }
+                connection.setConnectTimeout(100);
+                try {
+                    connection.getInputStream();
+                    conexionExitosa[0] = true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return;
+                }
+            }
+        });
 
-        URLConnection connection = null;
-        try {
-            connection = new URL(url).openConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        connection.setConnectTimeout(100);
-        try {
-            connection.getInputStream();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return true;
+        t.start();
+        t.join();
+
+        return conexionExitosa[0];
+
 
     }
 
