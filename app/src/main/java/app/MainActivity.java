@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
     WifiManager wifiManager;
     ConnectivityManager connectivityManager;
     public boolean httpGetToLibreMesh() throws InterruptedException {
-        boolean[] conexionExitosa = {false};
+        boolean[] success = {false};
 
-        Thread t = new Thread(new Runnable() {
+        Thread connectionThread = new Thread(new Runnable() {
             public void run() {
                 String url = "http://thisnode.info/cgi-bin/hostname";
 
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 connection.setConnectTimeout(100);
                 try {
                     connection.getInputStream();
-                    conexionExitosa[0] = true;
+                    success[0] = true;
                 } catch (IOException e) {
                     e.printStackTrace();
                     return;
@@ -55,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        t.start();
-        t.join();
+        connectionThread.start();
+        connectionThread.join();
 
-        return conexionExitosa[0];
+        return success[0];
 
 
     }
