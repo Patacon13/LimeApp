@@ -44,7 +44,7 @@ public class LibreMesh extends AppCompatActivity {
 
     private void configureNavigator(WebView webView) {
         WebSettings settings = webView.getSettings();
-        SpeechInterface speechInterface = new SpeechInterface();
+        MockSpeechInterface mockSpeechInterface = new MockSpeechInterface();
         settings.setDomStorageEnabled(true);
         settings.setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
@@ -56,10 +56,11 @@ public class LibreMesh extends AppCompatActivity {
             }
 
         });
-        webView.addJavascriptInterface(speechInterface, "speechSynthesis");
+        //FIXME: poner comentario problema y link al issue
+        webView.addJavascriptInterface(mockSpeechInterface, "speechSynthesis");
     }
 
-    private class SpeechInterface {
+    private class MockSpeechInterface {
         //Voice reading
         @JavascriptInterface
         public void getVoices() {
