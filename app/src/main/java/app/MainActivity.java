@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         connectionThread.start();
         connectionThread.join();
 
-        return success[0];
+        return success];
 
 
     }

@@ -70,17 +70,17 @@ public class LibreMesh extends AppCompatActivity {
 
     private void runNavigator() {
 
-        WebView navegador;
-        navegador = (WebView) findViewById(R.id.navegadorLibreMesh);
-        configureNavigator(navegador);
+        WebView navigator;
+        navigator = (WebView) findViewById(R.id.navegadorLibreMesh);
+        configureNavigator(navigator);
 
         System.out.println(NetworkAccessManager.getGateway(wifiManager));
-        navegador.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        navigator.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            navegador.setWebContentsDebuggingEnabled(true);
+            navigator.setWebContentsDebuggingEnabled(true);
         }
-        navegador.loadUrl(NetworkAccessManager.getGateway(wifiManager));
+        navigator.loadUrl(NetworkAccessManager.getGateway(wifiManager));
     }
 
 }
