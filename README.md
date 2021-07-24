@@ -44,7 +44,11 @@ Android Studio -> Open an existing project -> [Folder of cloned project]
 * Support other services in addition to Lime-App.
 * Add the app to the LibreMesh operating system, giving the posibility to the user to obtain the app directly from the router.
 
-# Doc
+# Google website of the project
+
+https://summerofcode.withgoogle.com/projects/5276643104391168
+
+# Posts
 
 https://blog.freifunk.net/2021/06/11/android-native-app-for-network-selection-capability-in-libremesh-routers-overview/
-
+https://blog.freifunk.net/2021/07/12/building-an-app-for-network-capability/
