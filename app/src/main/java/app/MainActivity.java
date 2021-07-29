@@ -6,25 +6,20 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.StrictMode;
+import android.os.Handler;
+import android.text.Html;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.limeapp.R;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.UnknownHostException;
-import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +58,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void showError() {
+        TextView tips = (TextView) findViewById(R.id.tips);
+        TextView errorTitle = (TextView) findViewById(R.id.errorTitle);
+        Button retry = (Button) findViewById(R.id.retryButton);
+        tips.setText(Html.fromHtml(getResources().getString(R.string.tips)));
+        tips.setVisibility(View.VISIBLE);
+        retry.setVisibility(View.VISIBLE);
+        errorTitle.setVisibility(View.VISIBLE);
+    }
+
+    private void hideLibreMesh() {
+        TextView libreMesh = (TextView) findViewById(R.id.LibreMeshText);
+        libreMesh.setVisibility(View.INVISIBLE);
+    }
+
+    private void hideError() {
+        TextView tips = (TextView) findViewById(R.id.tips);
+        TextView errorTitle = (TextView) findViewById(R.id.errorTitle);
+        Button retry = (Button) findViewById(R.id.retryButton);
+        tips.setText(Html.fromHtml(getResources().getString(R.string.tips)));
+        tips.setVisibility(View.INVISIBLE);
+        retry.setVisibility(View.INVISIBLE);
+        errorTitle.setVisibility(View.INVISIBLE);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
         connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) NetworkAccessManager.requestWifi(connectivityManager);
+        if (!accessToLibreMesh()) {
+            hideLibreMesh();
+            showError();
+        }
     }
 
     public boolean verifyLibreMeshConnection() {
@@ -83,10 +107,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void informConnectionToLibreMesh(View view) {
-        if(NetworkAccessManager.verifyWifiConnection(wifiManager))
+        if (NetworkAccessManager.verifyWifiConnection(wifiManager))
             Toast.makeText(getApplicationContext(), verifyLibreMeshConnection() ? "Está en una red LibreMesh" : "No está en una red LibreMesh",Toast.LENGTH_LONG).show();
         else
-            Toast.makeText(getApplicationContext(), "No está conectado a la WiFi. Conéctese y vuelva a intentarlo" ,Toast.LENGTH_LONG).show();
+            System.out.println("No se encuentra conectado a la Wi-Fi");
     }
 
     public void informPrivateIp(View view) {
@@ -94,15 +118,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void accessToLibreMesh(View view) {
+    public boolean accessToLibreMesh() {
         Intent myIntent = new Intent(this, LibreMesh.class);
-        startActivity(myIntent);
-        if(NetworkAccessManager.verifyWifiConnection(wifiManager))
-            if(verifyLibreMeshConnection())
+        if (NetworkAccessManager.verifyWifiConnection(wifiManager)) {
+            if (verifyLibreMeshConnection()) {
                 startActivity(myIntent);
-            else
-                Toast.makeText(getApplicationContext(), "No está en una red LibreMesh",Toast.LENGTH_LONG).show();
+                return true;
+            } else
+                System.out.println("No está en una red LibreMesh");
+        }
         else
-            Toast.makeText(getApplicationContext(), "No está conectado a la WiFi. Conéctese y vuelva a intentarlo" ,Toast.LENGTH_LONG).show();
+            System.out.println("No está conectado a la Wi-Fi");
+        return false;
+    }
+
+    public void retry(View view) {
+        hideError();
+        if (!accessToLibreMesh()) (new Handler()).postDelayed(this::showError, 200);
     }
 }

@@ -24,7 +24,7 @@ public class NetworkAccessManager extends AppCompatActivity {
         connectivityManager.requestNetwork(networkRequest, new ConnectivityManager.NetworkCallback() {
             @Override
             public void onAvailable(Network network) {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                     connectivityManager.bindProcessToNetwork(network);
                 else
                     ConnectivityManager.setProcessDefaultNetwork(network);
@@ -32,7 +32,7 @@ public class NetworkAccessManager extends AppCompatActivity {
 
             @Override
             public void onLost(Network network) {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                     connectivityManager.bindProcessToNetwork(null);
                 else
                     ConnectivityManager.setProcessDefaultNetwork(null);
@@ -54,7 +54,7 @@ public class NetworkAccessManager extends AppCompatActivity {
         connectivityManager.requestNetwork(networkRequest, new ConnectivityManager.NetworkCallback() {
             @Override
             public void onAvailable(Network network) {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                     connectivityManager.bindProcessToNetwork(network);
                 else
                     ConnectivityManager.setProcessDefaultNetwork(network);
@@ -62,7 +62,7 @@ public class NetworkAccessManager extends AppCompatActivity {
 
             @Override
             public void onLost(Network network) {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                     connectivityManager.bindProcessToNetwork(null);
                 else
                     ConnectivityManager.setProcessDefaultNetwork(null);
