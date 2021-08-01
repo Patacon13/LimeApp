@@ -11,19 +11,17 @@
 
     <TextView
         android:id="@+id/errorTitle"
-        android:layout_width="404dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="105dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="178dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="109dp"
+        android:layout_marginBottom="199dp"
         android:text="No es posible ingresar a la LimeApp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/LibreMeshText"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,7 +29,9 @@
         android:id="@+id/tips"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="65dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="61dp"
         android:text=""
         android:textColor="#FFFFFF"
         android:textSize="20sp"
@@ -43,11 +43,9 @@
 
     <Button
         android:id="@+id/retryButton"
-        android:layout_width="388dp"
-        android:layout_height="131dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="223dp"
+        android:layout_height="89dp"
+        android:layout_marginBottom="173dp"
         android:background="@drawable/button_bg"
         android:onClick="retry"
         android:text="Reintentar"
@@ -61,9 +59,9 @@
 
     <TextView
         android:id="@+id/LibreMeshText"
-        android:layout_width="230dp"
+        android:layout_width="213dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="334dp"
+        android:layout_marginBottom="340dp"
         android:text="LibreMesh"
         android:textAlignment="center"
         android:textSize="34sp"
