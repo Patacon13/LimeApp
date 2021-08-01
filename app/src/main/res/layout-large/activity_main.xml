@@ -11,43 +11,43 @@
 
     <TextView
         android:id="@+id/errorTitle"
-        android:layout_width="404dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="105dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="178dp"
+        android:layout_width="364dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="32dp"
         android:text="No es posible ingresar a la LimeApp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/LibreMeshText"
+        app:layout_constraintBottom_toTopOf="@+id/tips"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tips"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="65dp"
+        android:layout_width="463dp"
+        android:layout_height="475dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="5dp"
         android:text=""
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/retryButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/errorTitle" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.807" />
 
     <Button
         android:id="@+id/retryButton"
-        android:layout_width="388dp"
-        android:layout_height="131dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="245dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="644dp"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/button_bg"
         android:onClick="retry"
         android:text="Reintentar"
@@ -56,19 +56,24 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.449"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tips" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.784" />
 
     <TextView
         android:id="@+id/LibreMeshText"
         android:layout_width="230dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="334dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="324dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="324dp"
         android:text="LibreMesh"
         android:textAlignment="center"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/errorTitle" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
