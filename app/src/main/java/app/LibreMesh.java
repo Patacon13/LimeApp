@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
@@ -22,11 +23,25 @@ public class LibreMesh extends AppCompatActivity {
 
     private ConnectivityManager connectivityManager;
     private WifiManager wifiManager;
+    private WebView navigator;
 
     @Override
-    public void onBackPressed() {
-        // Do Here what ever you want do on back press;
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    if (navigator.canGoBack() && !navigator.getUrl().equals(("http://" + NetworkAccessManager.getGateway(wifiManager) + "/app/#/rx"))) {
+                        navigator.goBack();
+                    } else {
+                        finish();
+                    }
+                    return true;
+            }
+
+        }
+        return super.onKeyDown(keyCode, event);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +61,12 @@ public class LibreMesh extends AppCompatActivity {
         runNavigator();
     }
 
-    private void configureNavigator(WebView webView) {
-        WebSettings settings = webView.getSettings();
+    private void configureNavigator() {
+        WebSettings settings = navigator.getSettings();
         MockSpeechInterface mockSpeechInterface = new MockSpeechInterface();
         settings.setDomStorageEnabled(true);
         settings.setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient() {
+        navigator.setWebViewClient(new WebViewClient() {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -61,7 +76,7 @@ public class LibreMesh extends AppCompatActivity {
 
         });
         //FIXME: poner comentario problema y link al issue
-        webView.addJavascriptInterface(mockSpeechInterface, "speechSynthesis");
+        navigator.addJavascriptInterface(mockSpeechInterface, "speechSynthesis");
     }
 
     private class MockSpeechInterface {
@@ -74,9 +89,8 @@ public class LibreMesh extends AppCompatActivity {
 
     private void runNavigator() {
 
-        WebView navigator;
         navigator = (WebView) findViewById(R.id.navegadorLibreMesh);
-        configureNavigator(navigator);
+        configureNavigator();
 
         System.out.println(NetworkAccessManager.getGateway(wifiManager));
         navigator.setLayerType(View.LAYER_TYPE_SOFTWARE, null);

@@ -24,7 +24,8 @@
             android:name="app.LibreMesh"
             android:label="@string/title_activity_libre_mesh"
             android:theme="@style/Theme.LimeApp.NoActionBar"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:noHistory="true"></activity>
         <activity android:name="app.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         if (NetworkAccessManager.verifyWifiConnection(wifiManager)) {
             if (verifyLibreMeshConnection()) {
                 startActivity(myIntent);
+                finish();
                 return true;
             } else
                 System.out.println("No está en una red LibreMesh");
