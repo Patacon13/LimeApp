@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                     return;
                 }
-                connection.setConnectTimeout(100);
+                connection.setConnectTimeout(5000);
                 try {
                     connection.getInputStream();
                     success[0] = true;
@@ -125,11 +125,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(myIntent);
                 finish();
                 return true;
-            } else
+            } else {
                 System.out.println("No está en una red LibreMesh");
+                Toast.makeText(getApplicationContext(), "Error en HTTPGet", Toast.LENGTH_LONG).show();
+            }
         }
-        else
+        else {
             System.out.println("No está conectado a la Wi-Fi");
+            Toast.makeText(getApplicationContext(), "No se esta detectando una conexion a WiFi", Toast.LENGTH_LONG).show();
+        }
         return false;
     }
 

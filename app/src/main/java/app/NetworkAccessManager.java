@@ -88,10 +88,9 @@ public class NetworkAccessManager extends AppCompatActivity {
     }
 
     public static boolean verifyWifiConnection(WifiManager wm) {
-        if (wm.isWifiEnabled()) {
-            return wm.getConnectionInfo().getNetworkId() != -1;
-        }
-        return false;
+        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.P)
+            return wm.isWifiEnabled() && wm.getConnectionInfo().getNetworkId() != -1;
+        return wm.isWifiEnabled();
     }
 
     public static String getGateway(WifiManager wm) {
