@@ -25,21 +25,18 @@ public class MainActivity extends AppCompatActivity {
 
     WifiManager wifiManager;
     ConnectivityManager connectivityManager;
+    URLConnection connection = null;
+
+    public MainActivity(WifiManager wifiManager, URLConnection urlConnection) {
+        this.wifiManager = wifiManager;
+        this.connection = urlConnection;
+    }
+
     public boolean httpGetToLibreMesh() throws InterruptedException {
         boolean[] success = {false};
 
         Thread connectionThread = new Thread(new Runnable() {
             public void run() {
-                String url = "http://thisnode.info/cgi-bin/hostname";
-
-                URLConnection connection = null;
-                try {
-                    connection = new URL(url).openConnection();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return;
-                }
-                connection.setConnectTimeout(5000);
                 try {
                     connection.getInputStream();
                     success[0] = true;
@@ -83,12 +80,24 @@ public class MainActivity extends AppCompatActivity {
         errorTitle.setVisibility(View.INVISIBLE);
     }
 
+    private void initializeMain() {
+        connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        try {
+            connection = new URL("http://thisnode.info/cgi-bin/hostname").openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        connection.setConnectTimeout(5000);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        initializeMain();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) NetworkAccessManager.requestWifi(connectivityManager);
         if (!accessToLibreMesh()) {
             hideLibreMesh();
