@@ -11,7 +11,6 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -114,19 +113,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
 
     }
-
-    public void informConnectionToLibreMesh(View view) {
-        if (NetworkAccessManager.verifyWifiConnection(wifiManager))
-            Toast.makeText(getApplicationContext(), verifyLibreMeshConnection() ? "Está en una red LibreMesh" : "No está en una red LibreMesh",Toast.LENGTH_LONG).show();
-        else
-            System.out.println("No se encuentra conectado a la Wi-Fi");
-    }
-
-    public void informPrivateIp(View view) {
-        Toast.makeText(getApplicationContext(), NetworkAccessManager.getPrivateIp(wifiManager),Toast.LENGTH_LONG).show();
-    }
-
-
     public boolean accessToLibreMesh() {
         Intent myIntent = new Intent(this, LibreMesh.class);
         if (NetworkAccessManager.verifyWifiConnection(wifiManager)) {
@@ -136,12 +122,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             } else {
                 System.out.println("No está en una red LibreMesh");
-                Toast.makeText(getApplicationContext(), "Error en HTTPGet", Toast.LENGTH_LONG).show();
             }
         }
         else {
             System.out.println("No está conectado a la Wi-Fi");
-            Toast.makeText(getApplicationContext(), "No se esta detectando una conexion a WiFi", Toast.LENGTH_LONG).show();
         }
         return false;
     }
