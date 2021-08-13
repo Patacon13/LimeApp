@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LibreMesh-app</string>
+    <string name="app_name">LimeApp</string>
     <string name="title_activity_libre_mesh">LibreMesh</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

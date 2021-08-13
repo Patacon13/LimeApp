@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.limeapp.R;
+import com.example.LimeApp.R;
 
 import java.io.IOException;
 import java.net.URL;
