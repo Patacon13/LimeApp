@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     ConnectivityManager connectivityManager;
     URLConnection connection = null;
 
+    public MainActivity() {
+
+    }
+
     public MainActivity(WifiManager wifiManager, URLConnection urlConnection) {
         this.wifiManager = wifiManager;
         this.connection = urlConnection;
