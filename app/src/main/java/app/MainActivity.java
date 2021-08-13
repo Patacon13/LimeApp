@@ -11,7 +11,6 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,21 +24,18 @@ public class MainActivity extends AppCompatActivity {
 
     WifiManager wifiManager;
     ConnectivityManager connectivityManager;
+    URLConnection connection = null;
+
+    public MainActivity(WifiManager wifiManager, URLConnection urlConnection) {
+        this.wifiManager = wifiManager;
+        this.connection = urlConnection;
+    }
+
     public boolean httpGetToLibreMesh() throws InterruptedException {
         boolean[] success = {false};
 
         Thread connectionThread = new Thread(new Runnable() {
             public void run() {
-                String url = "http://thisnode.info/cgi-bin/hostname";
-
-                URLConnection connection = null;
-                try {
-                    connection = new URL(url).openConnection();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return;
-                }
-                connection.setConnectTimeout(5000);
                 try {
                     connection.getInputStream();
                     success[0] = true;
@@ -83,12 +79,24 @@ public class MainActivity extends AppCompatActivity {
         errorTitle.setVisibility(View.INVISIBLE);
     }
 
+    private void initializeMain() {
+        connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        try {
+            connection = new URL("http://thisnode.info/cgi-bin/hostname").openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        connection.setConnectTimeout(5000);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        initializeMain();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) NetworkAccessManager.requestWifi(connectivityManager);
         if (!accessToLibreMesh()) {
             hideLibreMesh();
@@ -105,19 +113,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
 
     }
-
-    public void informConnectionToLibreMesh(View view) {
-        if (NetworkAccessManager.verifyWifiConnection(wifiManager))
-            Toast.makeText(getApplicationContext(), verifyLibreMeshConnection() ? "Está en una red LibreMesh" : "No está en una red LibreMesh",Toast.LENGTH_LONG).show();
-        else
-            System.out.println("No se encuentra conectado a la Wi-Fi");
-    }
-
-    public void informPrivateIp(View view) {
-        Toast.makeText(getApplicationContext(), NetworkAccessManager.getPrivateIp(wifiManager),Toast.LENGTH_LONG).show();
-    }
-
-
     public boolean accessToLibreMesh() {
         Intent myIntent = new Intent(this, LibreMesh.class);
         if (NetworkAccessManager.verifyWifiConnection(wifiManager)) {
@@ -127,12 +122,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             } else {
                 System.out.println("No está en una red LibreMesh");
-                Toast.makeText(getApplicationContext(), "Error en HTTPGet", Toast.LENGTH_LONG).show();
             }
         }
         else {
             System.out.println("No está conectado a la Wi-Fi");
-            Toast.makeText(getApplicationContext(), "No se esta detectando una conexion a WiFi", Toast.LENGTH_LONG).show();
         }
         return false;
     }
