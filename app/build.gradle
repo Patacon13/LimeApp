@@ -10,8 +10,8 @@ android {
         applicationId "com.altermundi.android.LimeApp"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1
-        versionName "0.7.1-Prerelease"
+        versionCode 2
+        versionName "0.7.2-Prerelease"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
