@@ -14,8 +14,8 @@ import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.LimeApp.R;
-import com.example.LimeApp.databinding.ActivityLibreMeshBinding;
+import com.altermundi.android.LimeApp.R;
+import com.altermundi.android.LimeApp.databinding.ActivityLibreMeshBinding;
 
 
 public class LibreMesh extends AppCompatActivity {
@@ -50,7 +50,7 @@ public class LibreMesh extends AppCompatActivity {
 
         wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 
-        com.example.LimeApp.databinding.ActivityLibreMeshBinding binding = ActivityLibreMeshBinding.inflate(getLayoutInflater());
+        com.altermundi.android.LimeApp.databinding.ActivityLibreMeshBinding binding = ActivityLibreMeshBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
