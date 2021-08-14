@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializeMain() {
         connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) NetworkAccessManager.requestWifi(connectivityManager);
         try {
             connection = new URL("http://thisnode.info/cgi-bin/hostname").openConnection();
         } catch (IOException e) {
@@ -101,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializeMain();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) NetworkAccessManager.requestWifi(connectivityManager);
         if (!accessToLibreMesh()) {
             hideLibreMesh();
             showError();
