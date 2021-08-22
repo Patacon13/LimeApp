@@ -3,7 +3,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LibreMesh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#808080"
@@ -11,24 +10,24 @@
 
     <TextView
         android:id="@+id/errorTitle"
-        android:layout_width="320dp"
-        android:layout_height="83dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="154dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:text="No es posible ingresar a la LimeApp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="10sp"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tips"
-        android:layout_width="411dp"
-        android:layout_height="280dp"
+        android:layout_width="182dp"
+        android:layout_height="93dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="40dp"
         android:text=""
         android:textColor="#FFFFFF"
         android:textSize="10sp"
@@ -38,9 +37,9 @@
 
     <Button
         android:id="@+id/retryButton"
-        android:layout_width="245dp"
-        android:layout_height="83dp"
-        android:layout_marginEnd="88dp"
+        android:layout_width="146dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/button_bg"
         android:onClick="retry"

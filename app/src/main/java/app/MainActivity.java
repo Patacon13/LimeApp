@@ -119,17 +119,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public boolean accessToLibreMesh() {
         Intent myIntent = new Intent(this, LibreMesh.class);
-        if (NetworkAccessManager.verifyWifiConnection(wifiManager)) {
-            if (verifyLibreMeshConnection()) {
-                startActivity(myIntent);
-                finish();
-                return true;
-            } else {
-                System.out.println("No está en una red LibreMesh");
-            }
-        }
-        else {
-            System.out.println("No está conectado a la Wi-Fi");
+        if (verifyLibreMeshConnection()) {
+            startActivity(myIntent);
+            finish();
+            return true;
         }
         return false;
     }
