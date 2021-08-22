@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
                     connection.getInputStream();
                     success[0] = true;
                 } catch (IOException e) {
-                    e.printStackTrace();
                     return;
                 }
             }
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         connectionThread.join();
 
         return success[0];
-
 
     }
 
@@ -90,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             connection = new URL("http://thisnode.info/cgi-bin/hostname").openConnection();
         } catch (IOException e) {
-            e.printStackTrace();
             return;
         }
         connection.setConnectTimeout(5000);
@@ -111,15 +108,14 @@ public class MainActivity extends AppCompatActivity {
         try {
             return httpGetToLibreMesh();
         } catch (InterruptedException e) {
-            System.out.println("Error de interrupcion al intentar acceder a la IP de LibreMesh.");
+            return false;
         }
-        return false;
 
     }
     public boolean accessToLibreMesh() {
         initializeAccess();
         Intent myIntent = new Intent(this, LibreMesh.class);
-        if (verifyLibreMeshConnection()) {
+        if (NetworkAccessManager.verifyWifiConnection(wifiManager) && verifyLibreMeshConnection()) {
             startActivity(myIntent);
             finish();
             return true;

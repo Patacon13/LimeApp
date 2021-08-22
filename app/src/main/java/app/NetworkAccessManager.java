@@ -45,6 +45,10 @@ public class NetworkAccessManager extends AppCompatActivity {
                 ((addr >>>= 8) & 0xFF));
     }
 
+    public static boolean verifyWifiConnection(WifiManager wm) {
+        return wm.isWifiEnabled() && ((Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) ? wm.getConnectionInfo().getNetworkId() != -1 : true);
+    }
+
     public static String getGateway(WifiManager wm) {
         return intToIp(wm.getDhcpInfo().gateway);
     }

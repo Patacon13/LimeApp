@@ -44,10 +44,7 @@ public class LibreMesh extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
-
         wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 
         com.altermundi.android.LimeApp.databinding.ActivityLibreMeshBinding binding = ActivityLibreMeshBinding.inflate(getLayoutInflater());
@@ -63,7 +60,6 @@ public class LibreMesh extends AppCompatActivity {
     private void configureNavigator() {
         WebSettings settings = navigator.getSettings();
         MockSpeechInterface mockSpeechInterface = new MockSpeechInterface();
-        settings.setDomStorageEnabled(true);
         settings.setJavaScriptEnabled(true);
         navigator.setWebViewClient(new WebViewClient() {
 
@@ -74,12 +70,11 @@ public class LibreMesh extends AppCompatActivity {
             }
 
         });
-        //FIXME: poner comentario problema y link al issue
+        //Solves issue #3
         navigator.addJavascriptInterface(mockSpeechInterface, "speechSynthesis");
     }
 
     private class MockSpeechInterface {
-        //Voice reading
         @JavascriptInterface
         public void getVoices() {
 
@@ -91,7 +86,6 @@ public class LibreMesh extends AppCompatActivity {
         navigator = (WebView) findViewById(R.id.navegadorLibreMesh);
         configureNavigator();
 
-        System.out.println(NetworkAccessManager.getGateway(wifiManager));
         navigator.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
