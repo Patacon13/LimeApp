@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         errorTitle.setVisibility(View.INVISIBLE);
     }
 
-    private void initializeMain() {
+    private void initializeAccess() {
         connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) NetworkAccessManager.requestWifi(connectivityManager);
@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initializeMain();
 
         if (!accessToLibreMesh()) {
             hideLibreMesh();
@@ -118,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public boolean accessToLibreMesh() {
+        initializeAccess();
         Intent myIntent = new Intent(this, LibreMesh.class);
         if (verifyLibreMeshConnection()) {
             startActivity(myIntent);
