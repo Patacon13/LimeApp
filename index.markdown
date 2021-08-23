@@ -28,6 +28,7 @@ There's a to-do list below containing a list of things that we want to add in th
 #### How to compile it on Ubuntu 20.04
 
 1. Install git and Android Studio
+
 ```
 sudo apt install git
 sudo apt install openjdk-11-jdk
