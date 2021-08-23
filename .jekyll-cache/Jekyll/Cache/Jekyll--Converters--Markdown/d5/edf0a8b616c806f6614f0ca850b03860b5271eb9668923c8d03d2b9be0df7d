@@ -1,0 +1,12 @@
+I"�<h1 id="cálculo-del-flujo-máximo">Cálculo del Flujo Máximo</h1>
+
+<p>Sabemos que el algoritmo de Ford-Fulkerson consigue (en un subgrafoAB) el flujo máximo requerido sobre un grafo. Este puede ser implementado sobre un DFS o BFS. Generalmente BFS puede tener una mejor complejidad total (aunque sea igual en Big O), pero no alteraba demasiado los tiempos por lo que no consideramos que sea una buena estrategia siendo que todo el trabajo práctico aprovechaba el algoritmo de búsqueda en profundidad.</p>
+
+<p>El pseudo-código del algoritmo general sería:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Recorrer DFS actualizando valores (restando flujo).
+2. Actualizar la lista si el flujo encontrado es mayor al anterior.
+3. Revisar si existe un nuevo retorno de DFS (volver a paso 1, o finalizar).
+</code></pre></div></div>
+
+:ET

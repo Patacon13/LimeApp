@@ -1,0 +1,27 @@
+I"�<h1 id="cálculo-del-camino-mínimo">Cálculo del camino mínimo</h1>
+
+<p>El cálculo del camino mínimo es igual para los tres tipos de caminos, solo variando el dato que se analiza al inicializar la matriz de adyacencias del grafo.
+Para comenzar, se realiza la matriz de adyacencia analizando el siguiente patrón:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Para todas las estacionesA -&gt; Para todas las estacionesB -&gt; Para todas las líneas de transporte -&gt; Si existe conexión directa de estacionA a estacionB -&gt; Actualizar valor en la matriz.
+</code></pre></div></div>
+
+<p>Luego, mediante el algoritmo de dijkstra se busca el mínimo camino según la matriz de adyacencia generada previamente.</p>
+
+<p>Sabemos que el algoritmo de dijkstra genera un vector con el padre de cada nodo en el recorrido mínimo generado. Entonces, finalmente lo que se hace, es generar una lista recorriendo de atrás para adelante los índices encontrados en este vector “padre”</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">ultimaIteracion</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+<span class="k">while</span><span class="o">(!</span><span class="n">iteracion</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">origen</span><span class="o">.</span><span class="na">id</span><span class="o">))</span> <span class="o">{</span>
+	<span class="k">if</span><span class="o">(</span><span class="n">ultimaIteracion</span> <span class="o">==</span> <span class="n">iteracion</span><span class="o">)</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+	<span class="kt">int</span> <span class="n">thisIteracion</span> <span class="o">=</span> <span class="n">iteracion</span><span class="o">;</span>
+	<span class="n">ultimaIteracion</span> <span class="o">=</span> <span class="n">thisIteracion</span><span class="o">;</span>
+	<span class="n">retorno</span><span class="o">.</span><span class="na">addFirst</span><span class="o">(</span><span class="n">estaciones</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+				   <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">estacion</span> <span class="o">-&gt;</span> <span class="n">estacion</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="nc">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">thisIteracion</span><span class="o">)))</span>
+				   <span class="o">.</span><span class="na">findFirst</span><span class="o">()</span>
+				   <span class="o">.</span><span class="na">get</span><span class="o">());</span>
+	<span class="n">iteracion</span> <span class="o">=</span> <span class="n">padre</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">iteracion</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">retorno</span><span class="o">.</span><span class="na">addFirst</span><span class="o">(</span><span class="n">origen</span><span class="o">);</span>
+<span class="k">return</span> <span class="n">retorno</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="nc">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+</code></pre></div></div>
+:ET

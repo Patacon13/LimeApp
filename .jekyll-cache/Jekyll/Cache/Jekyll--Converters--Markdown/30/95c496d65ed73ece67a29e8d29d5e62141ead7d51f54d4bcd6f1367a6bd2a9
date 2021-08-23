@@ -1,0 +1,21 @@
+I"�<p>El usuario puede hacer consultas sobre el total de las estaciones. En principio puede ir a Estaciones-&gt;Consultar estaciones para acceder a las opciones de:</p>
+<ul>
+  <li>Visualizar todas las estaciones.</li>
+  <li>Modificar una estación.</li>
+  <li>Eliminar una estación.</li>
+  <li>Ver el flujo máximo entre una estación A y una estación B.</li>
+  <li>Ver los mantenimientos en una estación.</li>
+</ul>
+
+<p><img src="https://i.ibb.co/R3HLgsF/Estacion-Todas-Estaciones.png" alt="Consulta todas las estaciones" /></p>
+
+<h2 id="flujo-máximo">Flujo máximo</h2>
+
+<p>La aplicación cuenta con un algoritmo de detección de Flujo Máximo entre A y B. Para seleccionar la estación A se clickea en la tabla la estación deseada, y luego se presiona en Flujo Máximo, lo cual permite seleccionar una estacion B.</p>
+
+<p><img src="https://i.ibb.co/LPgTC0t/Estacion-Flujo5.png" alt="Consulta estacion 5 flujo max" /></p>
+
+<p>Luego, se mostrará todos los caminos posibles de la estación A a la estación B, y cual es el camino que se debe elegir para aprovechar el flujo máximo (en el ejemplo de la captura solo había un camino posible).</p>
+
+<p><img src="https://i.ibb.co/zRbbFcV/Analiza-E5.png" alt="Consulta estacion 5 flujo max con respuesta" /></p>
+:ET

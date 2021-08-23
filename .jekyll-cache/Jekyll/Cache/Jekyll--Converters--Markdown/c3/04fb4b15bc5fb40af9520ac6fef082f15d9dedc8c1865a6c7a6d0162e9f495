@@ -1,0 +1,21 @@
+I"4<h1 id="visualización-de-grafos">Visualización de grafos</h1>
+
+<p>Para visualizar el mapa con el grafo se utilizó la clase ‘GraphStream’ que permite realizar automáticamente el dibujo agregando nodos y aristas con su disposición en cada componente conexa automáticamente.</p>
+
+<p>Seteo de propiedad:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">"org.graphstream.ui"</span><span class="o">,</span> <span class="s">"swing"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Disposición y muestra del grafo:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">graph</span><span class="o">.</span><span class="na">setAutoCreate</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<span class="n">graph</span><span class="o">.</span><span class="na">setStrict</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<span class="nc">Viewer</span> <span class="n">viewer</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>Permitir cerrar ventana sin cerrar aplicación:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">viewer</span><span class="o">.</span><span class="na">setCloseFramePolicy</span><span class="o">(</span><span class="nc">Viewer</span><span class="o">.</span><span class="na">CloseFramePolicy</span><span class="o">.</span><span class="na">HIDE_ONLY</span><span class="o">);</span>
+</code></pre></div></div>
+:ET

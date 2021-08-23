@@ -1,0 +1,29 @@
+I"�<h1 id="consultar-líneas-de-transporte">Consultar líneas de transporte</h1>
+
+<p>El usuario tiene la posibilidad de:</p>
+<ul>
+  <li>Visualizar todas las líneas de transporte.</li>
+  <li>Modificar una línea.</li>
+  <li>Eliminar una línea.</li>
+  <li>Registrar/Ver trayectos de una línea.</li>
+</ul>
+
+<p><img src="https://i.ibb.co/Dt0NzsZ/Ver-Lineas.png" alt="Visualiza líneas de transporte" /></p>
+
+<h2 id="registrarver-trayectos-de-una-línea">Registrar/Ver trayectos de una línea</h2>
+
+<p>Esta opción permite ver trayectos y agregar una ruta a una línea dada.</p>
+
+<p><img src="https://i.ibb.co/Jk4BmTL/Registrar-Trayecto-Lineas.png" alt="Registra trayectos" /></p>
+
+<p>Una vez que el usuario quiere agregar una ruta, debe indicar:</p>
+<ul>
+  <li>Estación origen.</li>
+  <li>Estación destino.</li>
+  <li>Cantidad de pasajeros.</li>
+  <li>Estado.</li>
+  <li>Costo.</li>
+</ul>
+
+<p><img src="https://i.ibb.co/zQb1XTc/Agregar-Ruta-Lineas.png" alt="Agrega ruta" /></p>
+:ET

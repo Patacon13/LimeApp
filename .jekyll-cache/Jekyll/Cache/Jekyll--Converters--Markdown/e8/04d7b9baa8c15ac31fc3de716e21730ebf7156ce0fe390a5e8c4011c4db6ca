@@ -1,0 +1,41 @@
+I"M<h1 id="app-size">App size</h1>
+
+<p>The idea of the app was to incorporate it into the LibreMesh OS (inside the router), so the app size needed to be light. The final size is approximately 730,3 KB. This was achieved with some tricks:</p>
+
+<ol>
+  <li>Add scripts to build.gradle</li>
+</ol>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">```</span><span class="n">groovy</span>
+<span class="n">buildTypes</span> <span class="o">{</span>
+    <span class="n">release</span> <span class="o">{</span>
+        <span class="n">minifyEnabled</span> <span class="kc">true</span>
+        <span class="n">shrinkResources</span> <span class="kc">true</span>
+        <span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="s1">'proguard-android-optimize.txt'</span><span class="o">),</span> <span class="s1">'proguard-rules.pro'</span>
+    <span class="o">}</span>
+<span class="o">}</span>  
+</code></pre></div></div>
+
+<ol>
+  <li>Add resConfig for the Spanish language in build.gradle</li>
+</ol>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">resConfigs</span> <span class="s2">"es"</span>
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>Convert the icon to WebP</p>
+  </li>
+  <li>
+    <p>Delete unused dependencies in the build.gradle</p>
+  </li>
+  <li>
+    <p>Delete these dependencies (added automatically) and all use of them</p>
+  </li>
+</ol>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span> <span class="s1">'androidx.appcompat:appcompat:1.2.0'</span>
+<span class="n">implementation</span> <span class="s1">'com.google.android.material:material:1.2.1'</span>
+</code></pre></div></div>
+:ET

@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">LimeApp</string>
-    <string name="title_activity_libre_mesh">LibreMesh</string>
-    <!-- Strings used for fragments for navigation -->
-
-    <string name="tips"><![CDATA[• Verificá que estás conectado/a a la <b>red wifi</b> de la red comunitaria.<br>• Verificá que tu nodo esté <b>encendido</b>.<br>• Si tenés un router interno, probá conectándote <b>directamente al router del techo</b>]]></string>
-
-</resources>

@@ -1,0 +1,14 @@
+I"�<h1 id="conexión-a-base-de-datos">Conexión a Base de Datos</h1>
+
+<p>Se utilizó el motor de base de datos ‘MySql’ y por medio del driver jdbc propio, se estableció la conexión a la BD. Por otro lado, por medio del DriverManager se consigue la conexión pasándole el URL, Usuario y Contraseña de la base de datos.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Connection</span> <span class="nf">crearConexion</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">SQLException</span><span class="o">,</span> <span class="nc">ClassNotFoundException</span> <span class="o">{</span>
+	<span class="nc">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+	<span class="nc">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">"com.mysql.cj.jdbc.Driver"</span><span class="o">);</span>
+	<span class="n">conn</span> <span class="o">=</span> <span class="nc">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="no">URL</span><span class="o">,</span> <span class="no">USER</span><span class="o">,</span> <span class="no">PASS</span><span class="o">);</span>
+	<span class="k">return</span> <span class="n">conn</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Aclaración: en el binario compilado se puso a ‘usuario’ y ‘contrasena’ como usuario y contraseña predeterminado a una base de datos en localhost. Eso se debe configurar manualmente con los scripts insertados en el repositorio</strong></p>
+:ET

@@ -1,0 +1,9 @@
+I"S<h1 id="pagerank">PageRank</h1>
+
+<p>Desde estaciones-&gt;PageRank se puede calcular el PageRank de las estaciones disponibles en el sistema.</p>
+
+<p><img src="https://i.ibb.co/cbfFn0W/pagerank.png&quot;" alt="Consulta de page rank" /></p>
+
+<p><strong>Aclaración: el PageRank solo mostrará estaciones que le lleguen caminos</strong></p>
+
+:ET

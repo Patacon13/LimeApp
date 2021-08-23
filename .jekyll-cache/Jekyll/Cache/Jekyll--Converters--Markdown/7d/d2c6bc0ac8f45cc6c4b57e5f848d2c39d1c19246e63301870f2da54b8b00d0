@@ -1,0 +1,39 @@
+I"¹<h1 id="network-access-manager">Network Access Manager</h1>
+
+<p>The application has a class that manages every message requiring network verifications or selections.</p>
+
+<h2 id="requesting-wifi">Requesting WiFi</h2>
+
+<p>The method that requests the WiFi interface over the mobile one works with this algorithm:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Create a NetworkRequest with the WiFi as a transport type.
+2. Request a network with the NetworkRequewst generated in the Connectivity Manager.
+2.1 In the message add a NetworkCallback with the onAvailable and onLost overridden methods that set the process to the WiFi network
+</code></pre></div></div>
+
+<p>On resume, the first step is just as simple as to create the object:</p>
+
+<pre><code class="language-Java">final NetworkRequest networkRequest = new NetworkRequest.Builder()
+    .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+    .build();
+</code></pre>
+
+<p>And the second one can be achived by sending the message with the NetworkCallback overridden:</p>
+
+<pre><code class="language-Java">connectivityManager.requestNetwork(networkRequest, new ConnectivityManager.NetworkCallback() {
+    @Override
+    void onAvailable(Network network) {
+        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) connectivityManager.bindProcessToNetwork(network);
+        else ConnectivityManager.setProcessDefaultNetwork(network);
+    }
+
+    @Override
+    public void onLost(Network network) {
+        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) connectivityManager.bindProcessToNetwork(null);
+        else ConnectivityManager.setProcessDefaultNetwork(null);
+    }
+
+});
+</code></pre>
+
+:ET

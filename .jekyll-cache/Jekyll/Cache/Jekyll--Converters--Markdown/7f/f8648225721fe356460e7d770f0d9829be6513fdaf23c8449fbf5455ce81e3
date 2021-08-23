@@ -1,0 +1,59 @@
+I"�<h1 id="limeapp">LimeApp</h1>
+
+<h2 id="description">Description</h2>
+
+<p>This is a network capability application that helps the LibreMesh user to connect and configure the node.
+The application is created for Freifunk - Altermundi as a part of the Google Summer of Code 2021 program.</p>
+
+<h3 id="why-a-network-capability-app">Why a network capability app</h3>
+
+<p>Android only sends data to internet through one way, mobile data or WiFi. To help the user connecting to Internet, Android detects if the WiFi provides an internet connection, and automatically changes between Data or WiFi unless the user explicitly asks for a WiFi connection.
+In the general case, the user doesn’t know that there’s a possibility to use the WiFi without Internet or doesn’t want to because it implies losing Internet Access. With this application, the user can configure the node without disconnecting Mobile Data.</p>
+
+<h3 id="status-of-the-app">Status of the app</h3>
+
+<p>As we’re starting the second part of the GSoC, the app isn’t finished yet, there’s only a preview version that has the principal functions, without a good graphical interface but can execute all the features expected for the first release.</p>
+
+<h2 id="how-to-compile-it">How to compile it</h2>
+
+<h4 id="how-to-compile-it-on-ubuntu-2004">How to compile it on Ubuntu 20.04</h4>
+
+<ol>
+  <li>Install git and Android Studio
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>git
+<span class="nb">sudo </span>apt <span class="nb">install </span>openjdk-11-jdk
+<span class="nb">sudo </span>add-apt-repository ppa:maarten-fonville/android-studio
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>android-studio
+</code></pre></div>    </div>
+  </li>
+  <li>Clone the repo</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/Patacon13/LibreMesh-app
+</code></pre></div></div>
+
+<ol>
+  <li>Open it on Android Studio</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Android Studio -&gt; Open an existing project -&gt; [Folder of cloned project]
+</code></pre></div></div>
+<h2 id="to-do">To-Do</h2>
+
+<ul>
+  <li>A better graphical interface with the integrations of all the planned functions of the app.</li>
+  <li>Support other services in addition to Lime-App.</li>
+  <li>Add the app to the LibreMesh operating system, giving the posibility to the user to obtain the app directly from the router.</li>
+</ul>
+
+<h1 id="google-website-of-the-project">Google website of the project</h1>
+
+<p>https://summerofcode.withgoogle.com/projects/5276643104391168</p>
+
+<h1 id="posts">Posts</h1>
+
+<p>https://blog.freifunk.net/2021/06/11/android-native-app-for-network-selection-capability-in-libremesh-routers-overview/
+https://blog.freifunk.net/2021/07/12/building-an-app-for-network-capability/</p>
+
+:ET
