@@ -52,3 +52,4 @@ https://summerofcode.withgoogle.com/projects/5276643104391168
 
 https://blog.freifunk.net/2021/06/11/android-native-app-for-network-selection-capability-in-libremesh-routers-overview/
 https://blog.freifunk.net/2021/07/12/building-an-app-for-network-capability/
+https://blog.freifunk.net/2021/08/23/finishing-an-app-for-network-capability-for-the-libremesh-os/
