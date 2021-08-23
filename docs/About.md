@@ -9,8 +9,8 @@ nav_order: 5
 This app was generated as an open-source project from Altermundi in the context of the GSoC 2021
 
 Mentors:
-* Nicolas Pace
-* German Ferrero
+* Nicolás Pace
+* Germán Ferrero
 
 Advisor:
 * Juan Carrique
