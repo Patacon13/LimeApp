@@ -27,7 +27,7 @@ There's a to-do list below containing a list of things that we want to add in th
 
 #### How to compile it on Ubuntu 20.04
 
-0. Install git and Android Studio
+1. Install git and Android Studio
 ```
 sudo apt install git
 sudo apt install openjdk-11-jdk
@@ -36,13 +36,13 @@ sudo apt update
 sudo apt install android-studio
 ```
 
-1. Clone the repo
+2. Clone the repo
 
 ```
 git clone https://github.com/Patacon13/LibreMesh-app
 ```
 
-2. Open it on Android Studio
+3. Open it on Android Studio
 
 ```
 Android Studio -> Open an existing project -> [Folder of cloned project]

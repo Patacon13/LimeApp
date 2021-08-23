@@ -20,7 +20,7 @@ The method that requests the WiFi interface over the mobile one works with this 
 
 On resume, the first step is just as simple as to create the object:
 
-```Java
+```
 final NetworkRequest networkRequest = new NetworkRequest.Builder()
     .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
     .build();
@@ -28,7 +28,7 @@ final NetworkRequest networkRequest = new NetworkRequest.Builder()
 
 And the second one can be achived by sending the message with the NetworkCallback overridden:
 
-```Java
+```	
 connectivityManager.requestNetwork(networkRequest, new ConnectivityManager.NetworkCallback() {
     @Override
     void onAvailable(Network network) {
