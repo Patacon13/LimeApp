@@ -5,9 +5,10 @@
       <map>
         <entry key="app/src/main/res/drawable/button_bg.xml" value="0.11481481481481481" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.11481481481481481" />
-        <entry key="app/src/main/res/layout-large/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout-large/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout-normal/activity_main.xml" value="0.12907608695652173" />
         <entry key="app/src/main/res/layout-small/activity_main.xml" value="0.5135135135135135" />
+        <entry key="app/src/main/res/layout-xlarge/activity_main.xml" value="0.13064269319051264" />
         <entry key="app/src/main/res/layout/activity_libre_mesh.xml" value="0.12907608695652173" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12907608695652173" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.11481481481481481" />
