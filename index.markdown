@@ -20,14 +20,15 @@ In the general case, the user doesn't know that there's a possibility to use the
 
 ### Status of the app
 
-As we're starting the second part of the GSoC, the app isn't finished yet, there's only a preview version that has the principal functions, without a good graphical interface but can execute all the features expected for the first release.
+This is the APP published on the GSoC. It has all the features expected.
+There's a to-do list below containing a list of things that we want to add in the future on the idea of a future 2.0 version.
 
 ## How to compile it
 
 #### How to compile it on Ubuntu 20.04
 
 0. Install git and Android Studio
-```bash
+```bash=
 sudo apt install git
 sudo apt install openjdk-11-jdk
 sudo add-apt-repository ppa:maarten-fonville/android-studio
@@ -37,7 +38,7 @@ sudo apt install android-studio
 
 1. Clone the repo
 
-```bash
+```bash=
 git clone https://github.com/Patacon13/LibreMesh-app
 ```
 
@@ -48,9 +49,7 @@ Android Studio -> Open an existing project -> [Folder of cloned project]
 ```
 ## To-Do
 
-* A better graphical interface with the integrations of all the planned functions of the app.
 * Support other services in addition to Lime-App.
-* Add the app to the LibreMesh operating system, giving the posibility to the user to obtain the app directly from the router.
 
 # Google website of the project
 
@@ -60,4 +59,4 @@ https://summerofcode.withgoogle.com/projects/5276643104391168
 
 https://blog.freifunk.net/2021/06/11/android-native-app-for-network-selection-capability-in-libremesh-routers-overview/
 https://blog.freifunk.net/2021/07/12/building-an-app-for-network-capability/
-
+https://blog.freifunk.net/2021/08/23/finishing-an-app-for-network-capability-for-the-libremesh-os/
