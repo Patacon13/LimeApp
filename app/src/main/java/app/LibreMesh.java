@@ -29,7 +29,7 @@ public class LibreMesh extends AppCompatActivity {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             switch (keyCode) {
                 case KeyEvent.KEYCODE_BACK:
-                    if (navigator.canGoBack() && !navigator.getUrl().equals(("http://" + NetworkAccessManager.getGateway(wifiManager) + "/app/#/rx"))) {
+                    if (navigator.canGoBack() && !navigator.getUrl().equals(("http://thisnode.info/app/#/rx"))) {
                         navigator.goBack();
                     } else {
                         finish();
@@ -91,7 +91,7 @@ public class LibreMesh extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             navigator.setWebContentsDebuggingEnabled(true);
         }
-        navigator.loadUrl(NetworkAccessManager.getGateway(wifiManager));
+        navigator.loadUrl("http://thisnode.info/");
     }
 
 }
