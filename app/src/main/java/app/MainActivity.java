@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public boolean accessToLibreMesh() {
+        AndroidManager.deleteCache(getApplicationContext());
         initializeAccess();
         Intent myIntent = new Intent(this, LibreMesh.class);
         if (NetworkAccessManager.verifyWifiConnection(wifiManager) && verifyLibreMeshConnection()) {
